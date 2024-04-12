@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+// router.use(logger);
+
 // finding the routes goes in order
 
 // router.get('/', (req, res) => {
@@ -20,7 +22,7 @@ const router = express.Router();
 
 // as for the CRUD on particular URL every time we need to check :id like this to avoid this
 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get((req, res, next) => {
     let userId = req.params.id;
     res.send(`Get with user id : ${userId}`);
     console.log(req.user);
@@ -41,6 +43,11 @@ router.param("id", (req, res, next, id) => {
     req.user = users[id];
     next();
 });
+
+// function logger(req, res, next){
+//     console.log(req.originalUrl);
+//     next();
+// }
 
 
 
