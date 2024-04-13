@@ -9,6 +9,8 @@ app.use(logger);
 
 // This Middleware is  to render the static files directly with the URI
 app.use(express.static("public"));
+// to read the req or res body
+app.use(express.urlencoded({extended : true}));
 
 // as I have declare over here the logger it is called as Middleware
 // we can have n number of Middlewares this way

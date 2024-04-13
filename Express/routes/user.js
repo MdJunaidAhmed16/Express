@@ -6,13 +6,18 @@ const router = express.Router();
 
 // finding the routes goes in order
 
-// router.get('/', (req, res) => {
-//     res.send("Redirected to users page");
-// });
+router.get('/', (req, res) => {
+    console.log(req.query.name);
+    res.send("Redirected to users page");
+});
 
-// router.get('/new', (req, res) => {
-//     res.send("Redirected to users new add page");
-// });
+router.get('/new', (req, res) => {
+    res.render("users/new", {firstName : "Test"});
+});
+
+router.post('/post', (req, res) => {
+    res.send(`Hi ${req.body.firstName}`);
+});
 
 // // dynamically fetching with the routes
 // router.get('/:id', (req, res) => {
@@ -22,17 +27,17 @@ const router = express.Router();
 
 // as for the CRUD on particular URL every time we need to check :id like this to avoid this
 
-router.route('/:id').get((req, res, next) => {
-    let userId = req.params.id;
-    res.send(`Get with user id : ${userId}`);
-    console.log(req.user);
-}).put((req, res) => {
-    let userId = req.params.id;
-    res.send(`Put : ${userId}`);
-}).delete((req, res) => {
-    let userId = req.params.id;
-    res.send(`Deleting user id : ${userId}`);
-});
+// router.route('/:id').get((req, res, next) => {
+//     let userId = req.params.id;
+//     res.send(`Get with user id : ${userId}`);
+//     console.log(req.user);
+// }).put((req, res) => {
+//     let userId = req.params.id;
+//     res.send(`Put : ${userId}`);
+// }).delete((req, res) => {
+//     let userId = req.params.id;
+//     res.send(`Deleting user id : ${userId}`);
+// });
 
 const users = [{name : "Junaid"}, {name : "Abid"}];
 
